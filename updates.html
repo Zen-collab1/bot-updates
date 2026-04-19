@@ -7,8 +7,16 @@
     body {
       margin: 0;
       font-family: 'Segoe UI', sans-serif;
-      background: linear-gradient(135deg, #0f172a, #1e293b);
       color: white;
+      background: linear-gradient(270deg, #0f172a, #1e293b, #312e81);
+      background-size: 600% 600%;
+      animation: gradientMove 12s ease infinite;
+    }
+
+    @keyframes gradientMove {
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
     }
 
     .container {
@@ -19,44 +27,63 @@
 
     h1 {
       text-align: center;
-      font-size: 40px;
+      font-size: 42px;
       margin-bottom: 30px;
     }
 
     .update {
-      background: rgba(255,255,255,0.05);
+      background: rgba(255,255,255,0.06);
+      backdrop-filter: blur(10px);
+      border: 1px solid rgba(255,255,255,0.1);
       border-radius: 15px;
       padding: 20px;
       margin-bottom: 20px;
       box-shadow: 0 0 20px rgba(0,0,0,0.3);
-      transition: 0.2s;
+      transition: 0.3s;
+      cursor: pointer;
     }
 
     .update:hover {
-      transform: scale(1.02);
+      transform: scale(1.03);
+      box-shadow: 0 0 25px rgba(167, 139, 250, 0.6);
     }
 
     .version {
-      font-size: 22px;
+      font-size: 24px;
       font-weight: bold;
       color: #a78bfa;
+      display: flex;
+      align-items: center;
     }
 
-    .tag {
-      display: inline-block;
-      padding: 4px 10px;
-      border-radius: 10px;
+    .badge {
+      background: #a78bfa;
+      color: black;
       font-size: 12px;
+      padding: 3px 8px;
+      border-radius: 8px;
       margin-left: 10px;
     }
 
-    .new { background: #22c55e; }
-    .buff { background: #3b82f6; }
-    .fix { background: #ef4444; }
-
-    ul {
-      margin-top: 10px;
+    .content {
+      max-height: 0;
+      overflow: hidden;
+      opacity: 0;
+      transition: all 0.4s ease;
       line-height: 1.6;
+    }
+
+    .update.active .content {
+      max-height: 500px;
+      opacity: 1;
+      margin-top: 15px;
+    }
+
+    .content strong {
+      display: block;
+      font-size: 18px;
+      margin-bottom: 5px;
+      color: #c4b5fd;
     }
 
     .footer {
@@ -65,6 +92,7 @@
       opacity: 0.6;
       font-size: 14px;
     }
+
   </style>
 </head>
 
@@ -73,46 +101,59 @@
   <div class="container">
     <h1>📢 Bot Update Log</h1>
 
-    <div class="update">
+    <div class="update" onclick="toggleUpdate(this)">
       <div class="version">
-        v1.3
-        <span class="tag new">NEW</span>
+        🚀 v1 — The Beginning of Gerald!
+        <span class="badge">NEW</span>
       </div>
-      <ul>
-        <li>✨ Added Shiny Event</li>
-        <li>🦊 Added Kitsune Trait</li>
-        <li>💫 Added Astral Trait</li>
-      </ul>
+
+      <div class="content">
+
+        <p><strong>✨ TRAITS</strong>
+        🦊 Kitsune<br>
+        💫 Astral<br>
+        ✨ Shiny<br>
+        These boost character value massively. Flex responsibly.</p>
+
+        <p><strong>🎴 RUNWAY</strong>
+        A rotating showcase of 10 characters.<br>
+        Miss it? Too slow.</p>
+
+        <p><strong>🎮 CHARACTERS</strong>
+        New characters from anime + games added.<br>
+        Jujutsu Kaisen, Genshin Impact, Poppy Playtime & more coming.</p>
+
+        <p>that's all for now :)<br>
+        — Gerald the Axolotl </p>
+
+      </div>
     </div>
 
-    <div class="update">
+    <div class="update" onclick="toggleUpdate(this)">
       <div class="version">
-        v1.2
-        <span class="tag buff">UPDATE</span>
+        ⚡ v1.1 — Improvements
       </div>
-      <ul>
-        <li>🎴 Added Character Runway</li>
-        <li>📦 Inventory system added</li>
-        <li>⚡ Faster rolling system</li>
-      </ul>
-    </div>
 
-    <div class="update">
-      <div class="version">
-        v1.1
-        <span class="tag fix">FIX</span>
+      <div class="content">
+        <p><strong>🛠️ FIXES</strong>
+        Improved performance and smoother commands.</p>
+
+        <p><strong>✨ UI</strong>
+        Cleaner responses and better readability.</p>
       </div>
-      <ul>
-        <li>🐛 Fixed claim cooldown bug</li>
-        <li>🔧 Improved trait system</li>
-      </ul>
     </div>
 
     <div class="footer">
-      Made with ❤️ for your Discord bot
+       🤑 Gerald likes pringles
     </div>
 
   </div>
+
+  <script>
+    function toggleUpdate(element) {
+      element.classList.toggle("active");
+    }
+  </script>
 
 </body>
 </html>
