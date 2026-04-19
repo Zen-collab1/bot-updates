@@ -8,6 +8,7 @@
       margin: 0;
       font-family: 'Segoe UI', sans-serif;
       color: white;
+      display: flex;
       background: linear-gradient(270deg, #0f172a, #1e293b, #312e81);
       background-size: 600% 600%;
       animation: gradientMove 12s ease infinite;
@@ -19,8 +20,39 @@
       100% { background-position: 0% 50%; }
     }
 
+    /* SIDEBAR */
+    .sidebar {
+      width: 220px;
+      height: 100vh;
+      background: rgba(0,0,0,0.3);
+      backdrop-filter: blur(10px);
+      border-right: 1px solid rgba(255,255,255,0.1);
+      padding: 20px;
+      box-sizing: border-box;
+    }
+
+    .sidebar h2 {
+      font-size: 20px;
+      margin-bottom: 20px;
+      color: #c4b5fd;
+    }
+
+    .nav-item {
+      padding: 10px;
+      margin-bottom: 10px;
+      border-radius: 10px;
+      cursor: pointer;
+      transition: 0.2s;
+    }
+
+    .nav-item:hover {
+      background: rgba(167, 139, 250, 0.2);
+    }
+
+    /* MAIN CONTENT */
     .container {
-      max-width: 800px;
+      flex: 1;
+      max-width: 900px;
       margin: auto;
       padding: 30px;
     }
@@ -54,6 +86,7 @@
       color: #a78bfa;
       display: flex;
       align-items: center;
+      justify-content: space-between;
     }
 
     .badge {
@@ -62,7 +95,6 @@
       font-size: 12px;
       padding: 3px 8px;
       border-radius: 8px;
-      margin-left: 10px;
     }
 
     .content {
@@ -98,6 +130,21 @@
 
 <body>
 
+  <!-- SIDEBAR -->
+  <div class="sidebar">
+    <h2>📜 Updates</h2>
+    <div class="nav-item">🚀 v1</div>
+    <div class="nav-item">⚡ v1.1</div>
+    <div class="nav-item">⚔️ v2 (soon)</div>
+
+    <h2 style="margin-top:30px;">🐟 Gerald</h2>
+    <div style="font-size:14px; opacity:0.7;">
+      your local axolotl dev<br>
+      dropping updates fr
+    </div>
+  </div>
+
+  <!-- MAIN -->
   <div class="container">
     <h1>📢 Bot Update Log</h1>
 
@@ -108,7 +155,6 @@
       </div>
 
       <div class="content">
-
         <p><strong>✨ TRAITS</strong>
         🦊 Kitsune<br>
         💫 Astral<br>
@@ -116,16 +162,14 @@
         These boost character value massively. If you get a shiny Mahoraga I will be robbing it off you brah.</p>
 
         <p><strong>🎴 RUNWAY</strong>
-        A rotating showcase of 10 characters.<br>
-        Miss it? Then you're out of luck, leaving you to wait until it appears again.</p>
+        Rotating 10 character showcase.<br>
+        be fast or miss out.</p>
 
         <p><strong>🎮 CHARACTERS</strong>
-        New characters from anime + games added.<br>
-        Jujutsu Kaisen, Genshin Impact, Poppy Playtime & more coming.</p>
+        Jujutsu Kaisen, Genshin Impact, Poppy Playtime & more coming.<br>
+        More coming soon.</p>
 
-        <p>that's all for now :)<br>
-        — Gerald the Axolotl </p>
-
+        <p>— Gerald 🐟</p>
       </div>
     </div>
 
@@ -136,17 +180,16 @@
 
       <div class="content">
         <p><strong>🛠️ FIXES</strong>
-        Improved performance and smoother commands.</p>
+        Performance improvements.</p>
 
         <p><strong>✨ UI</strong>
-        Cleaner responses and better readability.</p>
+        Cleaner and smoother.</p>
       </div>
     </div>
 
     <div class="footer">
-       🤑 Gerald likes pringles
+      🤑 Gerald likes pringles
     </div>
-
   </div>
 
   <script>
