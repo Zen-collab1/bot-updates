@@ -2,15 +2,117 @@
 <html>
 <head>
   <title>Bot Updates</title>
-</head>
-<body style="font-family: Arial; background:#111; color:white; padding:20px;">
-  <h1>📢 Bot Update Log</h1>
 
-  <h2>v1.0</h2>
-  <ul>
-    <li>🎴 Added runway system</li>
-    <li>📦 Added inventory</li>
-  </ul>
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', sans-serif;
+      background: linear-gradient(135deg, #0f172a, #1e293b);
+      color: white;
+    }
+
+    .container {
+      max-width: 800px;
+      margin: auto;
+      padding: 30px;
+    }
+
+    h1 {
+      text-align: center;
+      font-size: 40px;
+      margin-bottom: 30px;
+    }
+
+    .update {
+      background: rgba(255,255,255,0.05);
+      border-radius: 15px;
+      padding: 20px;
+      margin-bottom: 20px;
+      box-shadow: 0 0 20px rgba(0,0,0,0.3);
+      transition: 0.2s;
+    }
+
+    .update:hover {
+      transform: scale(1.02);
+    }
+
+    .version {
+      font-size: 22px;
+      font-weight: bold;
+      color: #a78bfa;
+    }
+
+    .tag {
+      display: inline-block;
+      padding: 4px 10px;
+      border-radius: 10px;
+      font-size: 12px;
+      margin-left: 10px;
+    }
+
+    .new { background: #22c55e; }
+    .buff { background: #3b82f6; }
+    .fix { background: #ef4444; }
+
+    ul {
+      margin-top: 10px;
+      line-height: 1.6;
+    }
+
+    .footer {
+      text-align: center;
+      margin-top: 40px;
+      opacity: 0.6;
+      font-size: 14px;
+    }
+  </style>
+</head>
+
+<body>
+
+  <div class="container">
+    <h1>📢 Bot Update Log</h1>
+
+    <div class="update">
+      <div class="version">
+        v1.3
+        <span class="tag new">NEW</span>
+      </div>
+      <ul>
+        <li>✨ Added Shiny Event</li>
+        <li>🦊 Added Kitsune Trait</li>
+        <li>💫 Added Astral Trait</li>
+      </ul>
+    </div>
+
+    <div class="update">
+      <div class="version">
+        v1.2
+        <span class="tag buff">UPDATE</span>
+      </div>
+      <ul>
+        <li>🎴 Added Character Runway</li>
+        <li>📦 Inventory system added</li>
+        <li>⚡ Faster rolling system</li>
+      </ul>
+    </div>
+
+    <div class="update">
+      <div class="version">
+        v1.1
+        <span class="tag fix">FIX</span>
+      </div>
+      <ul>
+        <li>🐛 Fixed claim cooldown bug</li>
+        <li>🔧 Improved trait system</li>
+      </ul>
+    </div>
+
+    <div class="footer">
+      Made with ❤️ for your Discord bot
+    </div>
+
+  </div>
 
 </body>
 </html>
