@@ -1,5 +1,4 @@
 <!DOCTYPE html>
-
 <html>
 <head>
   <title>Bot Updates</title>
@@ -21,7 +20,6 @@
       100% { background-position: 0% 50%; }
     }
 
-    /* SIDEBAR */
     .sidebar {
       width: 220px;
       height: 100vh;
@@ -50,7 +48,6 @@
       background: rgba(167, 139, 250, 0.2);
     }
 
-    /* CHEST PANEL */
     .chest-panel {
       position: fixed;
       left: -300px;
@@ -100,7 +97,6 @@
       opacity: 0.7;
     }
 
-    /* REWARD */
     .reward {
       position: fixed;
       top: 50%;
@@ -113,13 +109,13 @@
       box-shadow: 0 0 30px rgba(0,0,0,0.5);
       transition: 0.3s;
       z-index: 100;
+      white-space: pre-line;
     }
 
     .reward.show {
       transform: translate(-50%, -50%) scale(1);
     }
 
-    /* MAIN */
     .container {
       flex: 1;
       max-width: 900px;
@@ -140,14 +136,12 @@
       border-radius: 15px;
       padding: 20px;
       margin-bottom: 20px;
-      box-shadow: 0 0 20px rgba(0,0,0,0.3);
       transition: 0.3s;
       cursor: pointer;
     }
 
     .update:hover {
       transform: scale(1.03);
-      box-shadow: 0 0 25px rgba(167, 139, 250, 0.6);
     }
 
     .version {
@@ -187,161 +181,140 @@
       font-size: 14px;
     }
   </style>
-
 </head>
 
 <body>
 
-  <!-- SIDEBAR -->
+<div class="sidebar">
+  <h2>📜 Updates</h2>
+  <div class="nav-item">🚀 v1</div>
+  <div class="nav-item">⚡ v1.1</div>
+  <div class="nav-item">⚔️ v2 (soon)</div>
 
-  <div class="sidebar">
-    <h2>📜 Updates</h2>
-    <div class="nav-item">🚀 v1</div>
-    <div class="nav-item">⚡ v1.1</div>
-    <div class="nav-item">⚔️ v2 (soon)</div>
-
-```
-<h2 style="margin-top:30px;">🐟 Gerald</h2>
-<div style="font-size:14px; opacity:0.7;">
-  your local axolotl dev<br>
-  dropping updates fr
-</div>
-
-<h2 style="margin-top:30px;">💎 Shards</h2>
-<div class="nav-item" onclick="toggleChestPanel()">🧰 Open Chest</div>
-```
-
+  <h2 style="margin-top:30px;">🐟 Gerald</h2>
+  <div style="font-size:14px; opacity:0.7;">
+    your local axolotl dev<br>
+    dropping updates fr
   </div>
 
-  <!-- CHEST PANEL -->
+  <h2 style="margin-top:30px;">💎 Shards</h2>
+  <div class="nav-item" onclick="toggleChestPanel()">🧰 Open Chest</div>
+</div>
 
-  <div class="chest-panel" id="chestPanel">
-    <div class="chest-container">
-      <div class="chest" id="chest" onclick="openChest()">🧰</div>
-      <div class="cooldown" id="cooldownText">Ready to open</div>
+<div class="chest-panel" id="chestPanel">
+  <div class="chest-container">
+    <div class="chest" id="chest" onclick="openChest()">🧰</div>
+    <div class="cooldown" id="cooldownText">Ready to open</div>
+  </div>
+</div>
+
+<div class="reward" id="rewardBox">
+  <h2 id="rewardText"></h2>
+</div>
+
+<div class="container">
+  <h1>📢 Bot Update Log</h1>
+
+  <div class="update" onclick="toggleUpdate(this)">
+    <div class="version">
+      🚀 v1 — The Beginning of Gerald!
+      <span class="badge">NEW</span>
+    </div>
+    <div class="content">
+      <p><strong>✨ TRAITS</strong><br>
+      🦊 Kitsune<br>💫 Astral<br>✨ Shiny</p>
+
+      <p><strong>🎴 RUNWAY</strong><br>
+      Rotating 10 character showcase.</p>
+
+      <p><strong>🎮 CHARACTERS</strong><br>
+      Jujutsu Kaisen, Genshin Impact & more.</p>
+
+      <p>— Gerald 🐟</p>
     </div>
   </div>
 
-  <!-- REWARD -->
-
-  <div class="reward" id="rewardBox">
-    <h2 id="rewardText"></h2>
+  <div class="update" onclick="toggleUpdate(this)">
+    <div class="version">⚡ v1.1 — Improvements</div>
+    <div class="content">
+      <p>🛠️ Performance improvements<br>✨ Cleaner UI</p>
+    </div>
   </div>
 
-  <!-- MAIN -->
-
-  <div class="container">
-    <h1>📢 Bot Update Log</h1>
-
-```
-<div class="update" onclick="toggleUpdate(this)">
-  <div class="version">
-    🚀 v1 — The Beginning of Gerald!
-    <span class="badge">NEW</span>
-  </div>
-
-  <div class="content">
-    <p><strong>✨ TRAITS</strong>
-    🦊 Kitsune<br>
-    💫 Astral<br>
-    ✨ Shiny<br>
-    These boost character value massively. If you get a shiny Mahoraga I will be robbing it off you brah.</p>
-
-    <p><strong>🎴 RUNWAY</strong>
-    Rotating 10 character showcase.<br>
-    be fast or miss out.</p>
-
-    <p><strong>🎮 CHARACTERS</strong>
-    Jujutsu Kaisen, Genshin Impact, Poppy Playtime & more coming.<br>
-    More coming soon.</p>
-
-    <p>— Gerald 🐟</p>
+  <div class="footer">
+    🤑 Gerald likes pringles
   </div>
 </div>
 
-<div class="update" onclick="toggleUpdate(this)">
-  <div class="version">
-    ⚡ v1.1 — Improvements
-  </div>
+<script>
+const COOLDOWN = 20 * 60 * 1000;
 
-  <div class="content">
-    <p><strong>🛠️ FIXES</strong>
-    Performance improvements.</p>
+function toggleUpdate(el) {
+  el.classList.toggle("active");
+}
 
-    <p><strong>✨ UI</strong>
-    Cleaner and smoother.</p>
-  </div>
-</div>
+function toggleChestPanel() {
+  document.getElementById("chestPanel").classList.toggle("open");
+}
 
-<div class="footer">
-  🤑 Gerald likes pringles
-</div>
-```
+// 🔑 CHEST NOW GENERATES CODE + SHARDS
+function openChest() {
+  const last = localStorage.getItem("lastOpen");
+  const now = Date.now();
 
-  </div>
+  if (last && now - last < COOLDOWN) {
+    alert("⏳ Chest is on cooldown!");
+    return;
+  }
 
-  <script>
-    const COOLDOWN = 20 * 60 * 1000;
+  const chest = document.getElementById("chest");
+  chest.classList.add("opening");
 
-    function toggleUpdate(el) {
-      el.classList.toggle("active");
-    }
+  setTimeout(() => chest.classList.remove("opening"), 500);
 
-    function toggleChestPanel() {
-      document.getElementById("chestPanel").classList.toggle("open");
-    }
+  const shards = Math.floor(Math.random() * 41) + 10;
+  const code = "SHARD-" + Math.floor(100000 + Math.random() * 900000);
 
-    function openChest() {
-      const last = localStorage.getItem("lastOpen");
-      const now = Date.now();
+  localStorage.setItem("lastOpen", now);
 
-      if (last && now - last < COOLDOWN) {
-        alert("⏳ Chest is on cooldown!");
-        return;
-      }
+  document.getElementById("rewardText").innerText =
+`💎 You got ${shards} shards!
 
-      const chest = document.getElementById("chest");
-      chest.classList.add("opening");
+🔑 Redeem Code:
+${code}
 
-      setTimeout(() => {
-        chest.classList.remove("opening");
-      }, 500);
+📌 How to redeem:
+Use /redeem in Discord
+and paste the code exactly.
 
-      const shards = Math.floor(Math.random() * 41) + 10;
+⚡ Codes can only be used once.`;
 
-      localStorage.setItem("lastOpen", now);
+  const box = document.getElementById("rewardBox");
+  box.classList.add("show");
 
-      document.getElementById("rewardText").innerText =
-        `💎 You got ${shards} shards!\nUse /redeem in Discord!`;
+  setTimeout(() => box.classList.remove("show"), 3000);
+}
 
-      const box = document.getElementById("rewardBox");
-      box.classList.add("show");
+// cooldown display
+function updateCooldown() {
+  const last = localStorage.getItem("lastOpen");
+  if (!last) return;
 
-      setTimeout(() => box.classList.remove("show"), 2500);
-    }
+  const remaining = COOLDOWN - (Date.now() - last);
+  if (remaining <= 0) {
+    document.getElementById("cooldownText").innerText = "Ready to open";
+    return;
+  }
 
-    function updateCooldown() {
-      const last = localStorage.getItem("lastOpen");
-      const now = Date.now();
+  const mins = Math.floor(remaining / 60000);
+  const secs = Math.floor((remaining % 60000) / 1000);
 
-      if (!last) return;
+  document.getElementById("cooldownText").innerText =
+    `⏳ ${mins}m ${secs}s`;
+}
 
-      const remaining = COOLDOWN - (now - last);
-
-      if (remaining <= 0) {
-        document.getElementById("cooldownText").innerText = "Ready to open";
-        return;
-      }
-
-      const mins = Math.floor(remaining / 60000);
-      const secs = Math.floor((remaining % 60000) / 1000);
-
-      document.getElementById("cooldownText").innerText =
-        `⏳ ${mins}m ${secs}s`;
-    }
-
-    setInterval(updateCooldown, 1000);
-  </script>
+setInterval(updateCooldown, 1000);
+</script>
 
 </body>
 </html>
