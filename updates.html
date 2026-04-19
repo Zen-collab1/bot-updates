@@ -12,6 +12,30 @@
       background: linear-gradient(270deg, #0f172a, #1e293b, #312e81);
       background-size: 600% 600%;
       animation: gradientMove 12s ease infinite;
+      overflow-x: hidden;
+      position: relative;
+    }
+
+    /* FLOATING BACKGROUND SHAPES */
+    .shape {
+      position: fixed;
+      border-radius: 50%;
+      filter: blur(40px);
+      opacity: 0.25;
+      z-index: 0;
+      animation: floatShape linear infinite;
+    }
+
+    .shape1 { width: 200px; height: 200px; background: #a78bfa; top: 10%; left: 10%; animation-duration: 18s; }
+    .shape2 { width: 300px; height: 300px; background: #60a5fa; top: 60%; left: 70%; animation-duration: 25s; }
+    .shape3 { width: 180px; height: 180px; background: #34d399; top: 80%; left: 20%; animation-duration: 22s; }
+
+    @keyframes floatShape {
+      0% { transform: translate(0,0) scale(1); }
+      25% { transform: translate(80px,-60px) scale(1.1); }
+      50% { transform: translate(-60px,80px) scale(1); }
+      75% { transform: translate(60px,60px) scale(1.2); }
+      100% { transform: translate(0,0) scale(1); }
     }
 
     @keyframes gradientMove {
@@ -23,47 +47,41 @@
     .sidebar {
       width: 220px;
       height: 100vh;
-      background: rgba(0,0,0,0.3);
-      backdrop-filter: blur(10px);
+      background: rgba(0,0,0,0.35);
+      backdrop-filter: blur(12px);
       border-right: 1px solid rgba(255,255,255,0.1);
       padding: 20px;
       box-sizing: border-box;
-    }
-
-    .sidebar h2 {
-      font-size: 20px;
-      margin-bottom: 20px;
-      color: #c4b5fd;
+      z-index: 2;
     }
 
     .nav-item {
-      padding: 10px;
-      margin-bottom: 10px;
-      border-radius: 10px;
+      padding: 12px;
+      margin-bottom: 12px;
+      border-radius: 12px;
       cursor: pointer;
-      transition: 0.2s;
+      transition: 0.25s;
     }
 
     .nav-item:hover {
-      background: rgba(167, 139, 250, 0.2);
+      background: rgba(167, 139, 250, 0.25);
+      transform: translateX(5px);
+      box-shadow: 0 0 15px rgba(167,139,250,0.4);
     }
 
     .chest-panel {
       position: fixed;
-      left: -300px;
+      left: -320px;
       top: 0;
-      width: 300px;
+      width: 320px;
       height: 100%;
-      background: rgba(0,0,0,0.5);
-      backdrop-filter: blur(15px);
-      border-right: 1px solid rgba(255,255,255,0.1);
+      background: rgba(0,0,0,0.55);
+      backdrop-filter: blur(18px);
       transition: 0.4s;
       z-index: 50;
     }
 
-    .chest-panel.open {
-      left: 220px;
-    }
+    .chest-panel.open { left: 220px; }
 
     .chest-container {
       text-align: center;
@@ -73,7 +91,8 @@
     .chest {
       font-size: 70px;
       cursor: pointer;
-      animation: float 2s infinite ease-in-out;
+      animation: float 2s infinite ease-in-out, glow 2s infinite;
+      filter: drop-shadow(0 0 10px #a78bfa);
     }
 
     @keyframes float {
@@ -82,19 +101,16 @@
       100% { transform: translateY(0); }
     }
 
-    .chest.opening {
-      animation: openChestAnim 0.5s ease;
-    }
-
-    @keyframes openChestAnim {
-      0% { transform: scale(1); }
-      50% { transform: scale(1.3) rotate(10deg); }
-      100% { transform: scale(1); }
+    @keyframes glow {
+      0% { filter: drop-shadow(0 0 5px #a78bfa); }
+      50% { filter: drop-shadow(0 0 25px #a78bfa); }
+      100% { filter: drop-shadow(0 0 5px #a78bfa); }
     }
 
     .cooldown {
       margin-top: 15px;
-      opacity: 0.7;
+      opacity: 0.8;
+      color: #c4b5fd;
     }
 
     .reward {
@@ -102,109 +118,102 @@
       top: 50%;
       left: 50%;
       transform: translate(-50%, -50%) scale(0);
-      background: #1e293b;
+      background: rgba(30,41,59,0.95);
       padding: 30px;
-      border-radius: 15px;
-      text-align: center;
-      box-shadow: 0 0 30px rgba(0,0,0,0.5);
+      border-radius: 16px;
+      white-space: pre-line;
       transition: 0.3s;
       z-index: 100;
-      white-space: pre-line;
+      border: 1px solid rgba(167,139,250,0.3);
     }
 
-    .reward.show {
-      transform: translate(-50%, -50%) scale(1);
+    .reward.show { transform: translate(-50%, -50%) scale(1); }
+
+    /* UPDATE LOG SPACING IMPROVED */
+    .update {
+      background: rgba(255,255,255,0.06);
+      border-radius: 15px;
+      padding: 25px;
+      margin-bottom: 25px;
+      cursor: pointer;
+      transition: 0.3s;
+      border: 1px solid rgba(255,255,255,0.05);
+    }
+
+    .update:hover {
+      transform: scale(1.03);
+      box-shadow: 0 0 25px rgba(167,139,250,0.4);
+    }
+
+    .update-content {
+      max-height: 0;
+      overflow: hidden;
+      opacity: 0;
+      transform: translateY(-8px);
+      transition: all 0.55s ease;
+      white-space: pre-line;
+      margin-top: 0;
+      line-height: 1.8;
+    }
+
+    .update.active .update-content {
+      max-height: 600px;
+      opacity: 1;
+      transform: translateY(0);
+      margin-top: 18px;
+    }
+
+    h1 {
+      text-align: center;
+      font-size: 42px;
+      margin-bottom: 35px;
+      text-shadow: 0 0 20px rgba(167,139,250,0.3);
     }
 
     .container {
       flex: 1;
       max-width: 900px;
       margin: auto;
-      padding: 30px;
-    }
-
-    h1 {
-      text-align: center;
-      font-size: 42px;
-      margin-bottom: 30px;
-    }
-
-    .update {
-      background: rgba(255,255,255,0.06);
-      backdrop-filter: blur(10px);
-      border: 1px solid rgba(255,255,255,0.1);
-      border-radius: 15px;
-      padding: 20px;
-      margin-bottom: 20px;
-      transition: 0.3s;
-      cursor: pointer;
-    }
-
-    .update:hover {
-      transform: scale(1.03);
-    }
-
-    .version {
-      font-size: 24px;
-      font-weight: bold;
-      color: #a78bfa;
-      display: flex;
-      justify-content: space-between;
-    }
-
-    .badge {
-      background: #a78bfa;
-      color: black;
-      font-size: 12px;
-      padding: 3px 8px;
-      border-radius: 8px;
-    }
-
-    .content {
-      max-height: 0;
-      overflow: hidden;
-      opacity: 0;
-      transition: all 0.4s ease;
-      line-height: 1.6;
-    }
-
-    .update.active .content {
-      max-height: 500px;
-      opacity: 1;
-      margin-top: 15px;
+      padding: 40px;
+      z-index: 2;
+      position: relative;
     }
 
     .footer {
       text-align: center;
-      margin-top: 40px;
-      opacity: 0.6;
-      font-size: 14px;
+      opacity: 0.75;
+      margin-top: 50px;
+      letter-spacing: 0.5px;
     }
   </style>
 </head>
 
 <body>
 
+<!-- BACKGROUND SHAPES -->
+<div class="shape shape1"></div>
+<div class="shape shape2"></div>
+<div class="shape shape3"></div>
+
 <div class="sidebar">
   <h2>📜 Updates</h2>
   <div class="nav-item">🚀 v1</div>
   <div class="nav-item">⚡ v1.1</div>
-  <div class="nav-item">⚔️ v2 (soon)</div>
 
   <h2 style="margin-top:30px;">🐟 Gerald</h2>
-  <div style="font-size:14px; opacity:0.7;">
+  <div style="font-size:14px; opacity:0.85; line-height:1.6;">
     your local axolotl dev<br>
     dropping updates fr
   </div>
 
   <h2 style="margin-top:30px;">💎 Shards</h2>
-  <div class="nav-item" onclick="toggleChestPanel()">🧰 Open Chest</div>
+  <div class="nav-item" onclick="toggleChest()">🧰 Open Chest</div>
 </div>
 
 <div class="chest-panel" id="chestPanel">
   <div class="chest-container">
-    <div class="chest" id="chest" onclick="openChest()">🧰</div>
-    <div class="cooldown" id="cooldownText">Ready to open</div>
+    <div class="chest" onclick="openChest()">🧰</div>
+    <div class="cooldown" id="cooldown">Ready</div>
   </div>
 </div>
 
@@ -216,104 +225,80 @@
   <h1>📢 Bot Update Log</h1>
 
   <div class="update" onclick="toggleUpdate(this)">
-    <div class="version">
-      🚀 v1 — The Beginning of Gerald!
-      <span class="badge">NEW</span>
-    </div>
-    <div class="content">
-      <p><strong>✨ TRAITS</strong><br>
-      🦊 Kitsune<br>💫 Astral<br>✨ Shiny</p>
+    <div><strong>🚀 v1 — The Beginning of Gerald</strong></div>
+    <div class="update-content">
+TRAITS ✨🦊💫
+ASTRAL ✨
+KITSUNE 🦊
+SHINY ✨
+THESE HAVE A CHANCE TO APPLY TO YOUR CHARACTERS MAKING THEM MORE VALUABLE!
+if you get a shiny mahoraga i'm yoinking it brah
 
-      <p><strong>🎴 RUNWAY</strong><br>
-      Rotating 10 character showcase.</p>
+RUNWAY 🎴
+EVERY 5 SECONDS A CHARACTER DROPS BE QUICK TO CLAIM ONE!!
 
-      <p><strong>🎮 CHARACTERS</strong><br>
-      Jujutsu Kaisen, Genshin Impact & more.</p>
-
-      <p>— Gerald 🐟</p>
+Dats all!
+- Gerald 🐟
     </div>
   </div>
 
   <div class="update" onclick="toggleUpdate(this)">
-    <div class="version">⚡ v1.1 — Improvements</div>
-    <div class="content">
-      <p>🛠️ Performance improvements<br>✨ Cleaner UI</p>
+    <div><strong>⚡ v1.1 — Improvements</strong></div>
+    <div class="update-content">
+🛠️ Performance improvements
+✨ Cleaner UI
     </div>
   </div>
 
-  <div class="footer">
-    🤑 Gerald likes pringles
-  </div>
+  <div class="footer">🤑 Gerald likes pringles</div>
 </div>
 
 <script>
 const COOLDOWN = 20 * 60 * 1000;
 
-function toggleUpdate(el) {
-  el.classList.toggle("active");
+function toggleUpdate(el){
+  el.classList.toggle('active');
 }
 
-function toggleChestPanel() {
-  document.getElementById("chestPanel").classList.toggle("open");
+function toggleChest(){
+  document.getElementById('chestPanel').classList.toggle('open');
 }
 
-// 🔑 CHEST NOW GENERATES CODE + SHARDS
-function openChest() {
-  const last = localStorage.getItem("lastOpen");
+function openChest(){
+  const last = localStorage.getItem('last');
   const now = Date.now();
 
-  if (last && now - last < COOLDOWN) {
-    alert("⏳ Chest is on cooldown!");
-    return;
-  }
+  if(last && now-last<COOLDOWN){alert('⏳ Chest cooldown');return;}
 
-  const chest = document.getElementById("chest");
-  chest.classList.add("opening");
+  const shards = Math.floor(Math.random()*41)+10;
+  const code = "SHARD-"+Math.floor(100000+Math.random()*900000);
 
-  setTimeout(() => chest.classList.remove("opening"), 500);
+  localStorage.setItem('last', now);
 
-  const shards = Math.floor(Math.random() * 41) + 10;
-  const code = "SHARD-" + Math.floor(100000 + Math.random() * 900000);
+  document.getElementById('rewardText').innerText =
+`💎 You got ${shards} shards!\n\n🔑 ${code}\n\n📌 Use /redeem in Discord`;
 
-  localStorage.setItem("lastOpen", now);
-
-  document.getElementById("rewardText").innerText =
-`💎 You got ${shards} shards!
-
-🔑 Redeem Code:
-${code}
-
-📌 How to redeem:
-Use /redeem in Discord
-and paste the code exactly.
-
-⚡ Codes can only be used once.`;
-
-  const box = document.getElementById("rewardBox");
-  box.classList.add("show");
-
-  setTimeout(() => box.classList.remove("show"), 3000);
+  document.getElementById('rewardBox').classList.add('show');
+  setTimeout(()=>document.getElementById('rewardBox').classList.remove('show'),3000);
 }
 
-// cooldown display
-function updateCooldown() {
-  const last = localStorage.getItem("lastOpen");
-  if (!last) return;
+function updateCooldown(){
+  const last = localStorage.getItem('last');
+  const el = document.getElementById('cooldown');
 
-  const remaining = COOLDOWN - (Date.now() - last);
-  if (remaining <= 0) {
-    document.getElementById("cooldownText").innerText = "Ready to open";
-    return;
-  }
+  if(!last){el.innerText="Ready";return;}
 
-  const mins = Math.floor(remaining / 60000);
-  const secs = Math.floor((remaining % 60000) / 1000);
+  const remaining = COOLDOWN-(Date.now()-last);
 
-  document.getElementById("cooldownText").innerText =
-    `⏳ ${mins}m ${secs}s`;
+  if(remaining<=0){el.innerText="Ready";return;}
+
+  const m=Math.floor(remaining/60000);
+  const s=Math.floor((remaining%60000)/1000);
+
+  el.innerText=`⏳ ${m}m ${s}s`;
 }
 
-setInterval(updateCooldown, 1000);
+setInterval(updateCooldown,1000);
 </script>
 
 </body>
